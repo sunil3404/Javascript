@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Navbar Tutorial</title>
+    <link rel="stylesheet" href="./navbar.css">
+  </head>
+  <body>
+	<nav class="container">
+		<div class="nav-logo-container"><p onclick="toggleSidebar()" class="nav-logo">DataScience</p>
+		</div>
+		<div class="nav-left-items-container">
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Libraries</a>
+					<ul>
+						<li><a id="pandas" onclick="libraryItems(this)"  href="#">Pandas</a></li>	
+						<li><a id="numpy" onclick="libraryItems(this)" href="#">Numpy</a></li>	
+						<li><a id="mlearn" onclick="libraryItems(this)" href="#">Machine - Learning</a></li>	
+					</ul>
+				</li>
+
+				<li><a href="#">Documents</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</div>
+		<div class="nav-right-items-container">
+			<ul>
+				<li><a href="#">Login</a></li>
+				<li><a href="#">Register</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="side-main-container">
+		<div class="search-container">
+			<input class="search-text" type="text" placeholder="Search Topic...">
+			<input class="search-button" type="button" value="Search"> 
+		</div>
+
+		<div class="sidebar-container">
+			<div class="package-container">
+			</div>
+		</div>
+	</div>
+	<div class="main-content">
+		<div class="heading-container">
+			<div class="heading"></div>
+		<div>
+		<div class="question-what">
+			<p class="question"></p>
+		</div>
+
+	</div>
+
+
+
+	<script src="navbar.js"></script>
+  </body>
+</html>
