@@ -51,25 +51,28 @@ window.onload = function(){
 	
 }
 
-function createListItems(element, heading_prefix){
+function createListItems(element, heading_prefix, heading_suffix){
 	var divParentTag = document.getElementsByClassName("package-container")[0]
 	var divTag= document.createElement("div");
 	var spanTag = document.createElement("span");
 
 	divTag.setAttribute("class", "package")
 	divTag.setAttribute("onclick", "onClickLibrary(this)");
+
 	if (element.length > 15){
 		divTag.innerHTML = element.substring(0, 15) + " . . ."
 	}else{
 		divTag.innerHTML = element
 	}
-
 	divParentTag.appendChild(divTag);
 
 	spanTag.setAttribute("class", "package-tooltip");
 	spanTag.setAttribute("heading", heading_prefix);
 	spanTag.innerHTML = element;
 	divTag.appendChild(spanTag);
+	
+	var heading = document.getElementsByClassName("heading")[0]
+	heading.innerHTML = heading_prefix.charAt(0).toUpperCase() + heading_prefix.slice(1) + " - " + heading_suffix.toUpperCase()
 
 }
 
@@ -88,19 +91,19 @@ function libraryItems(element) {
 	if(element.id == "pandas"){
 		pandas = pandas.sort()
 		for(var i=0; i<pandas.length; i++){
-			createListItems(pandas[i], element.id)
+			createListItems(pandas[i], element.id, pandas[0])
 		}
 
 	}else if(element.id == "numpy"){
 		numpy = numpy.sort()
 		for(var i=0; i<numpy.length; i++){
-			createListItems(numpy[i], element.id)
+			createListItems(numpy[i], element.id, numpy[0])
 		}
 
 	}else if(element.id == "mlearn"){
 		mlearn = mlearn.sort();
 		for(var i=0; i<mlearn.length; i++){
-			createListItems(mlearn[i], element.id)
+			createListItems(mlearn[i], element.id, mlearn[0])
 		}
 	}
 }
@@ -113,4 +116,24 @@ function onClickLibrary (element){
 	var heading = document.getElementsByClassName("heading")[0]
 
 	heading.innerHTML = prefix.charAt(0).toUpperCase() + prefix.slice(1) + " - " + suffix.toUpperCase()
+}
+
+// function to filter packages on the sidebar container
+
+function filterPackages(){
+	var searchText = document.getElementsByClassName("search-text")[0]
+	var packages = document.querySelectorAll(".package");
+	const packageHeader = document.getElementsByClassName("package-container")[0]
+	var heading = document.getElementsByClassName("heading")[0].innerHTML.split(" - ")[0].toLowerCase()
+	if (searchText.value == ''){
+		libraryItems(document.getElementById(heading))
+	}else {
+		for (var i=0; i < packages.length; i++){
+
+			if (!packages[i].innerText.toLowerCase().startsWith(searchText.value.toLowerCase())){
+				packageHeader.removeChild(packageHeader.children[i])
+				var packages = document.querySelectorAll(".package");
+			}
+		}
+	}
 }
