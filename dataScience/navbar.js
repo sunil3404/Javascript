@@ -58,7 +58,6 @@ function createListItems(element, heading_prefix, heading_suffix){
 
 	divTag.setAttribute("class", "package")
 	divTag.setAttribute("onclick", "onClickLibrary(this)");
-
 	if (element.length > 15){
 		divTag.innerHTML = element.substring(0, 15) + " . . ."
 	}else{
