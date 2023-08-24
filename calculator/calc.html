@@ -15,41 +15,40 @@
 		<div class="sub-container">
 			<div class="display-container"></div>
 			<div class="numerical-container">
-				<div class="digits" onclick="getDigits()">1</div>
-				<div class="digits" onclick="getDigits()">2</div>
-				<div class="digits" onclick="getDigits()">3</div>
-				<div class="digits" onclick="getDigits()">C</div>
-				<div class="digits" onclick="getDigits()">&#8592</div>
-				<div class="digits" onclick="getDigits()">H</div>
-				<div class="digits" onclick="getDigits()">4</div>
-				<div class="digits" onclick="getDigits()">5</div>
-				<div class="digits" onclick="getDigits()">6</div>
-				<div class="digits" onclick="getDigits()">+</div>
-				<div class="digits" onclick="getDigits()">&#8722</div>
-				<div class="digits" onclick="getDigits()">&#8730</div>
-				<div class="digits" onclick="getDigits()">7</div>
-				<div class="digits" onclick="getDigits()">8</div>
-				<div class="digits" onclick="getDigits()">9</div>
-				<div class="digits" onclick="getDigits()">&#8727</div>
-				<div class="digits" onclick="getDigits()">&#8725</div>
-				<div class="digits" onclick="getDigits()">&#8731</div>
-				<div class="digits" onclick="getDigits()">#</div>
-				<div class="digits" onclick="getDigits()">0</div>
-				<div class="digits" onclick="getDigits()">&#8729</div>
-				<div class="digits" onclick="getDigits()">%</div>
-				<div class="digits" onclick="getDigits()">(</div>
-				<div class="digits" onclick="getDigits()">&#8732</div>
-				<div class="digits" onclick="getDigits()">1</div>
-				<div class="digits" onclick="getDigits()">1</div>
-				<div class="digits" onclick="getDigits()">1</div>
-				<div class="digits" onclick="getDigits()">1</div>
-				<div class="digits" onclick="getDigits()">)</div>
-				<div class="digits" onclick="getDigits()">=</div>
-
-			
+				<div class="digits" onclick="getDigits(this)">1</div>
+				<div class="digits" onclick="getDigits(this)">2</div>
+				<div class="digits" onclick="getDigits(this)">3</div>
+				<div class="digits" onclick="clearDisp()">Clr</div>
+				<div class="digits" onclick="backSpace(this)">&#8592</div>
+				<div class="status" id="on" onclick="switchOn(this)">On</div>
+				<div class="digits" onclick="getDigits(this)">4</div>
+				<div class="digits" onclick="getDigits(this)">5</div>
+				<div class="digits" onclick="getDigits(this)">6</div>
+				<div class="digits" onclick="getOperator(this)">+</div>
+				<div class="digits" onclick="getOperator(this)">&#8722</div>
+				<div class="digits" onclick="getOperator(this)">&#8730</div>
+				<div class="digits" onclick="getDigits(this)">7</div>
+				<div class="digits" onclick="getDigits(this)">8</div>
+				<div class="digits" onclick="getDigits(this)">9</div>
+				<div class="digits" onclick="getOperator(this)">&#8727</div>
+				<div class="digits" onclick="getOperator(this)">&#8725</div>
+				<div class="digits" onclick="getOperator(this)">&#8731</div>
+				<div class="digits" onclick="getDigits(this)">#</div>
+				<div class="digits" onclick="getDigits(this)">0</div>
+				<div class="digits" onclick="getOperator(this)">&#8729</div>
+				<div class="digits" onclick="getOperator(this)">%</div>
+				<div class="digits" onclick="getOperator(this)">(</div>
+				<div class="digits" onclick="getOperator(this)">&#8732</div>
+				<div class="digits" onclick="getDigits(this)">1</div>
+				<div class="digits" onclick="getDigits(this)">1</div>
+				<div class="digits" onclick="getDigits(this)">1</div>
+				<div class="digits" onclick="getDigits(this)">1</div>
+				<div class="digits" onclick="getOperator(this)">)</div>
+				<div class="digits" onclick="getOperator(this)">=</div>
 			</div>
 		</div>
 	</div>
-	<script src="index.js"></script>
+	<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+	<script src="calc.js"></script>
   </body>
 </html>

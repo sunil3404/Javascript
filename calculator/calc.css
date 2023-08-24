@@ -32,11 +32,12 @@ body {
 	width: 100%;
 	flex-direction: column;
 	box-sizing: border-box;
-	border: 1px solid cyan;
+	/*border: 1px solid cyan;*/
 	padding: 5px;
 }
 
 .display-container {
+	display: flex;
 	width: 100%;
 	height: 60px;
 	border: 1px solid cyan;
@@ -44,6 +45,11 @@ body {
 	margin: 5px 20px 5px auto;
 	border-radius: 4px;
 	box-shadow: 1px 0.5px 1px white;
+	color: white;
+	align-items:center;
+	font-weight: bolder;
+	font-size: 30px;
+	padding: 0px 0px 0px 10px;
 }
 
 .numerical-container {
@@ -53,12 +59,12 @@ body {
 	justify-content: space-around;
 	align-items: center;
 	flex-wrap: wrap;
-	border: 1px solid cyan;
-	box-shadow 1px 0.5px 0.5px white;
+	/*border: 1px solid cyan;*/
+	/*box-shadow: 1px 0.5px 0.5px white;*/
 	border-radius: 4px;
 }
 
-.digits {
+.digits,  .status {
 	display: flex;
 	width: 68.5px;
 	height: 67.5px;
@@ -71,6 +77,20 @@ body {
 	font-weight: bolder;
 	box-shadow: 1px 1px 0.5px white;
 	border-radius: 4px;
+	cursor: pointer;
+}
+
+#on {
+	background: #00ffaa;
+	color: black;
+	box-shadow: 1px 1px 0.5px #00ffaa;
+}
+
+#off {
+	background: red;
+	color: black;
+	box-shadow: 1px 1px 0.5px red;
+
 }
 
 .digits:active {
