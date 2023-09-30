@@ -75,7 +75,13 @@ function enterDigitsInDisp(element){
 	if (disp.innerHTML == ""){
 		disp.innerHTML = element.innerHTML
 	}else {
-		disp.innerHTML = disp.innerHTML + element.innerHTML
+		tempdisp = disp.innerHTML.split(" ");
+		if (operators.includes(tempdisp[tempdisp.length - 1])) {
+			disp.innerHTML = disp.innerHTML + " " + element.innerHTML
+		} else {
+
+			disp.innerHTML = disp.innerHTML + element.innerHTML
+		}
 	}
 }
 
@@ -100,10 +106,37 @@ function backSpace() {
 //function to handle operator
 
 function getOperator(operator){
-	console.log(operator.innerHTML)
-	
+	if (disp.innerHTML == '') {
+		console.log("Nothing to Operate on ");
+	}else {
+		tempdisp = disp.innerHTML.split(" ");
+		if (operators.includes(tempdisp[tempdisp.length - 1])){
+			console.log("pred must be a numeric")
+		} else {
+			disp.innerHTML = disp.innerHTML + " " + operator.innerHTML;
+		}
+
+	}
 }
 
+var pg = require('pg');
+var conString = "postgres://postgres:postgres@localhost:5432/todoapp";
 
+var client = new pg.Client(conString);
+client.connect();
 
-
+async function selectFrom() {
+  try {
+    const res = await pool.query(
+      'SELECT * FROM DEV.TODOSTATUS'
+    );
+    alert(res);
+    return res.rows[0][data];
+  } catch (err) {
+    return err.stack;
+  }
+}
+async function whateverFuncName () {
+   var result = await selectFrom();
+   console.log(result);
+} 
