@@ -10,20 +10,23 @@
   <body>
 	<div class="nav-bar">TODO APP</div>
 	<div class="create-container">
-		<form action="/createTask" method='POST' onsubmit="todoTask()">
+		<!--<form action="/" method="POST" onsubmit="todoTask()">-->
+		<form>
 			<input class="todo-text" placeholder="Enter Task...">
-			<input type="submit" class="create-btn" value="Create" placeholder="Enter Task...">
+			<input type="submit" class="create-btn" value="Create">
 		</form>
 	</div>
 	<div class="todo-table">
 		<table class="table-head">
-			<tr>
-				<th>SL No.</th>
-				<th>Task Name</th>
-				<th>Date Created</th>
-				<th>Date Completed</th>
-				<th>Status</th>
-			</tr>
+			<tbody class="table-body">
+				<!-- <tr>
+					<th>SL No.</th>
+					<th>Task Name</th>
+					<th>Date Created</th>
+					<th>Date Completed</th>
+					<th>Status</th>
+				</tr> -->
+			</tbody>
 		</table>
 	</div>
 	<script type="text/javascript" src="./todoapp.js"></script>

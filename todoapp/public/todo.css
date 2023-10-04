@@ -75,13 +75,35 @@ form {
 th {
 	background: lightblue;
 	text-align: left;
+	padding: 5px;
 }
 
 .table-head > td {
-	text-align: left;
+	text-align: center;
+	font-size: 5px;
 }
 
 select {
 	width: 100%;
 
+}
+
+.table-buttons{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.btn-edit {
+	background: lightgrey;
+	cursor: pointer;
+	border-radius: 2px;
+	color: white;
+}
+
+.btn-del {
+	background: red;
+	cursor: pointer;
+	border-radius: 2px;
+	color: white;
 }
