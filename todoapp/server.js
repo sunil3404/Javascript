@@ -27,6 +27,19 @@ app.post('/createTask', async (req, res) => {
 	res.send(result.rows)
 })
 
+//Update Task
+app.put('/updateTask', async (req, res) => {
+	console.log(req.body)
+	const result = await db.updateTaskById(req.body.id, req.body.status, req.body.updated_date);
+	res.send(result.rows)
+})
+
+//Delete Task
+app.delete('/deleteTask', async(req, res) => {
+	const result = await db.deleteTaskById(req.body.id);
+	res.send(result.rows)
+})
+
 //Get All Status
 app.get('/status', db.getAllStatus)
 
