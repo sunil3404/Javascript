@@ -40,6 +40,27 @@ app.delete('/deleteTask', async(req, res) => {
 	res.send(result.rows)
 })
 
+//create User
+app.post('/register', async(req, res) => {
+	const user = await db.createUser(req.body.first_name, req.body.last_name, req.body.username, req.body.password, req.body.email)
+	res.send(user.rows)
+})
+
+//Get All Users
+app.get('/users', async(req, res) => {
+	const users = await db.getUsers()
+	res.send(users.rows)
+})
+
+app.get('/user/:id', async(req, res) => {
+	const user = await db.getUserById(req.params.id)
+	if (user.rows){
+		res.send(user.rows)
+	}else{
+		res.send(user)
+	}
+})
+
 //Get All Status
 app.get('/status', db.getAllStatus)
 

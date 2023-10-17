@@ -1,5 +1,46 @@
 const {pgclient} = require('./pgconnect.js')
 
+//Users Creation DB queries
+async function createUser(first_name, last_name, username, password, email){
+	try{
+		const result = await pgclient.query(`Insert into dev.user (first_name, last_name, username, password, email) 
+			values($1, $2, $3, $4, $5) RETURNING ID, USERNAME`, [first_name, last_name, username, password, email])
+		console.log(result.rows)
+		return result
+	}catch(err){
+		message = `Some thing went wrong ${err}`
+		console.log(message)
+	}
+
+}
+
+async function getUsers(req, res){
+	try{
+		const result = await pgclient.query(`select id, username, email from dev.user`)
+		console.log(result.rows)
+		return result
+	}catch(err){
+		message = `Some thing went wrong ${err}`
+		console.log(message)
+	}
+}
+
+async function getUserById(id) {
+	// body...
+	try{
+		const result = await pgclient.query(`select username, email from dev.user where id=$1`, [id])
+		console.log(result.rows.length)
+		if (result.rows.length == 0){
+			console.log("Inside if in userById");
+			return {"Message" : `No User found with id -> ${id}`}
+		}
+		return result
+	}catch(err){
+		message = `Some thing went wrong ${err}`
+		console.log(message)
+	}
+}
+
 async function getAllStatus(req , res){
 	query = "Select * from dev.todostatus"
 	try{
@@ -68,4 +109,4 @@ async function getOneStatus(req, res){
 	}
 }
 
-module.exports = {getAllStatus, getOneStatus, getTasks, getTaskById, createTask, updateTaskById, deleteTaskById}
+module.exports = {getAllStatus, getOneStatus, getTasks, getTaskById, createTask, updateTaskById, deleteTaskById, createUser, getUserById, getUsers}
