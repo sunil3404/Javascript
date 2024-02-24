@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	<link rel="stylesheet" href="./index.css">
+	<link rel="stylesheet" href="./login.css">
+</head>
+	<body>
+		<div class="header">
+			<div class="header-left">
+				<a href="http://127.0.0.1:8080/"><span class="logo"> Jira Clone </span></a>
+			</div>
+			<div class="header-right">
+				<a href="http://127.0.0.1:8080/login" class="login">Login</a>
+				<a href="http://127.0.0.1:8080/register" class="register">Register</a>
+				<div class="profile-picture">
+					<div class="status"></div>
+				</div>
+			</div>
+		</div>
+		<div class="login-main-container">
+			
+			<div class="login-container">
+				<div class="login-title">
+					<div> Login</div>
+				</div>
+				<form action="http://127.0.0.1:8080/user" method="POST">
+					<label class="user-label"> Username: </label>
+					<input class="user-name" type="text" name="username">
+
+					<label class="pass-label"> Password: </label>
+					<input class="user-pass" type="password" name="password">
+					<div class="login-button"> 
+						<input type="Submit" value="Sign In">
+						<span class="register-msg"> Sign Up <a href="http://127.0.0.1:8080/register">Here</a></span>
+					</div>
+				</form>
+				
+			</div>
+		</div>
+	</body>
+</html>

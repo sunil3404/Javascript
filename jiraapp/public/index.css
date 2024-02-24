@@ -1,0 +1,78 @@
+body {
+
+	margin : 0px;
+	padding: 0px;
+}
+
+.header {
+	width: 100%;
+	height: 70px;
+	background: white;
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid black;
+}
+
+
+.header-left {
+	padding: 20px;
+	background: black;
+	border : 1px solid white;
+}
+
+.header-left > a {
+	text-decoration: none;
+}
+
+.logo {
+	margin : 0 5px 0 5px;
+	font-size: 30px;
+	font-weight: bolder;
+	font-family : cursive;
+	color: white;
+	letter-spacing: 5px;
+	
+}
+
+.header-right {
+	background: black;
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	border : 1px solid white;
+}
+
+.login {
+	text-decoration: none;
+	font-size: 20px;
+	font-family: arial;
+	color: white;
+	margin-right: 25px;
+}
+
+.register {
+	text-decoration: none;
+	font-size: 20px;
+	font-family: arial;
+	color: white;
+	margin-right: 25px;
+}
+
+.profile-picture {
+	height: 50px;
+	width: 50px;
+	background: white;
+	border-radius: 50px;
+}
+
+.status {
+	width: 5px;
+	height: 5px;
+	background: green;
+	position: fixed;
+	border-radius: 50px;
+}
+
+
+
+
