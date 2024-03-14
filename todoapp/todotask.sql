@@ -1,37 +1,37 @@
 \c todoapp;
 
+drop table if exists dev.todotask;
 drop table if exists dev.todotasktest;
 drop table if exists dev.todostatus;
-drop table if exists dev.todotask;
 drop table if exists dev.user;
 
 
-create table dev.todotask (
-	ID SERIAL primary key not null,
-	task char(255) not null,
-	status char(20) not null default 'Created',
-	created_date date not null default current_date,
-	updated_date date default null
-);
+-- create table dev.todotask (
+-- 	ID SERIAL primary key not null,
+-- 	task char(255) not null,
+-- 	status char(20) not null default 'Created',
+-- 	created_date date not null default current_date,
+-- 	updated_date date default null
+-- );
 
 create table dev.user(
 	ID SERIAL primary key not null,
 	first_name varchar(100) not null,
 	last_name varchar(100) not null,
 	username varchar(50) unique not null,
-	password varchar(50) not null,
+	hashpassword varchar(255) not null,
 	email char(100) unique not null
 );
 
 create table dev.todostatus (
 	ID int primary key not null,
-	status char(40) not null
+	status varchar(40) not null
 );
 
-create table dev.todotasktest(
+create table dev.todotask(
 	ID SERIAL primary key not null,
-	task char(255) not null,
-	status_id INT not null,
+	task varchar(255) not null,
+	status_id INT not null default 1,
 	user_id INT not null,
 	created_date date not null default current_date,
 	updated_date date default null,
@@ -46,7 +46,7 @@ create table dev.todotasktest(
 );
 
 -- Update todotask table
-insert into dev.todotask (task) values('test task1');
+-- insert into dev.todotask (task) values('test task1');
 
 -- Update todostatus Table
 insert into dev.todostatus (id, status) values(1, 'Created');
@@ -54,10 +54,10 @@ insert into dev.todostatus (id, status) values(2, 'In Progress');
 insert into dev.todostatus (id, status) values(3, 'Completed');
 
 -- Insert sample data into user
-insert into dev.user (first_name, last_name, username, password, email) values('sunil', 'kumar', 'sunil@3404', 'password', 'sunil@gmail.com');
+/*insert into dev.user (first_name, last_name, username, hashpassword, email) values('sunil', 'kumar', 'sunil@3404', 'password', 'sunil@gmail.com');*/
 
 -- Update todotasktest
-insert into dev.todotasktest(task, status_id, user_id) values('Test Task 2', 1, 1);
+-- insert into dev.todotask(task, status_id, user_id) values('Test Task 2', 1, 1);
 
 
 

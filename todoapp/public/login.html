@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	<link rel="stylesheet" href="todo.css">
+	<link rel="stylesheet" href="login.css">
+</head>
+<body>
+	<div class="nav-bar">
+		TODO APP
+	</div>
+
+	<div class="login-container">
+		<div class="login-fields">
+			<span class="header"> Login </span>
+			<form method="POST" onsubmit="return false">
+				<input class="username" type="text" name="username" placeholder="Enter Username ...">
+				<input class="password" type="password" name="password" placeholder="Enter Password ...">
+				<div class="login-attributes">
+					<div class="checkbox-section">
+						<input type="checkbox" value="remember-me">
+						<label class="checkbox-label">Remember Me</label>
+					</div>
+					<a class="password" href="#"><span class="forgot-password">Forgot Password ?</span></a>
+				</div>
+				<input class="login-btn" type="submit" value="Login" id="login-id">
+				<div class="register-btn">
+					<input type="Submit" value="Create Account?" id="register-id">
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="register-view"></div>
+	<script type="module" src="./login.js"></script>
+	<!-- <script type="module" src="./register.js"></script> -->
+</body>
+</html>

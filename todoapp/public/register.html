@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Register</title>
+	<link rel="stylesheet" href="todo.css">
+	<link rel="stylesheet" href="register.css">
+</head>
+<body>
+	<div class="nav-bar">
+		TODO APP
+	</div>
+
+	<div class="register-container">
+		<div class="register-fields">
+			<div class="div-header">
+				<span class="header"> Register </span>
+			</div>
+			<form method="POST" onsubmit="return false">
+				<input class="first-name" type="text" name="first_name" placeholder="Enter FirstName ...">
+				<input class="last-name" type="text" name="last_name" placeholder="Enter LastName ...">
+				<input class="email" type="email" name="email" placeholder="Enter Email ...">
+				<input class="username" type="text" name="username" placeholder="Enter Username ...">
+				<input class="password1" type="password" name="password1" placeholder="Enter Password ...">
+				<input class="password2" type="password" name="password2" placeholder="Confirm Password ...">
+				<input class="register-btn" type="submit" value="Create User" id="register-id">
+				<div class="signin-btn">
+					<input type="Submit" value="SIGN IN" id="signin-id">
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="register-view"></div>
+	<script type="module" src="./register.js"></script>
+	
+</body>
+</html>

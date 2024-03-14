@@ -2,6 +2,7 @@ const express = require("express")
 const db  = require("./database.js")
 const path = require("path")
 const app = express();
+const bcrypt =  require("bcrypt")
 
 app.use(express.json())
 app.use(express.static("public"))
@@ -22,34 +23,58 @@ app.get('/task/:id', async (req, res) => {
 
 //Create Task
 app.post('/createTask', async (req, res) => {
+	console.log(req.body)
 	const { task } = req.body;
-	const result = await db.createTask(task);
+	const result = await db.createTask(task, req.body.userid);
+	console.log(result.rows)
 	res.send(result.rows)
 })
 
 //Update Task
 app.put('/updateTask', async (req, res) => {
 	console.log(req.body)
-	const result = await db.updateTaskById(req.body.id, req.body.status, req.body.updated_date);
+	const result = await db.updateTaskById(req.body.id, req.body.status_id, req.body.updated_date);
 	res.send(result.rows)
 })
 
 //Delete Task
 app.delete('/deleteTask', async(req, res) => {
+	console.log(req.body)
 	const result = await db.deleteTaskById(req.body.id);
 	res.send(result.rows)
 })
 
 //create User
 app.post('/register', async(req, res) => {
-	const user = await db.createUser(req.body.first_name, req.body.last_name, req.body.username, req.body.password, req.body.email)
-	res.send(user.rows)
+	const user = await db.createUser(req.body.first_name, req.body.last_name, req.body.email,
+									 req.body.username, req.body.password1)
+	res.redirect('/login')
+})
+
+app.post('/login', async(req, res) => {
+	const stat = await db.login(req.body.username, req.body.password)
+	res.cookie('userid', stat)
+	if(stat){
+		res.send(true)
+	}else {
+		res.send(false)
+	}
 })
 
 //Get All Users
 app.get('/users', async(req, res) => {
 	const users = await db.getUsers()
 	res.send(users.rows)
+})
+
+//Get User by username
+app.post('/username/', async(req, res) => {
+	const user = await db.getUserByUsername(req.body.username, req.body.password)
+	if (user.rows){
+		res.send(true)
+	}else {
+		res.send(false)
+	}
 })
 
 app.get('/user/:id', async(req, res) => {
@@ -67,8 +92,15 @@ app.get('/status', db.getAllStatus)
 //Get Status By Id
 app.get('/statbyid/:id', db.getOneStatus)
 
-//Render Files
-app.get('/', (req, res) => {
+// Render Files
+app.get('/todo', (req, res) => {
 	res.sendFile("/home/sunil/Javascript/todoapp/public/todo.html")
 })
 
+app.get('/register', (req, res) => {
+	res.sendFile("/home/sunil/Javascript/todoapp/public/register.html")
+})
+
+app.get('/login', (req, res) => {
+	res.sendFile("/home/sunil/Javascript/todoapp/public/login.html")
+})
