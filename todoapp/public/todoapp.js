@@ -174,7 +174,8 @@ formsubmit.addEventListener("submit", todoTask)
 
 function todoTask(event){
 	var inputdata = document.getElementsByClassName("todo-text")[0].value
-	userid = parseInt(document.cookie.split(";")[1].trim().split("=")[1])
+	let userid = parseInt(document.cookie.split(";")[1].trim().split("=")[1])
+	console.log(userid)
 	fetch("http://127.0.0.1:8080/createTask", {
   	method: "POST",
   	body: JSON.stringify({

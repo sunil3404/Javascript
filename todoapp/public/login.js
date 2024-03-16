@@ -21,10 +21,11 @@ document.getElementById("login-id").addEventListener("click", function(){
 	.then((stat) => loginUser(stat))
 
 	function loginUser(stat){
-		if (stat == true){
+		console.log(stat)
+		if (stat.message == true){
 			window.location.replace("http://127.0.0.1:8080/todo");
 		}else {
-			console.log(stat)
+			alert(stat.message)
 		}
 	}
 });
