@@ -5,14 +5,18 @@ const bct = require("bcrypt")
 async function createUser(first_name, last_name, email, username, password){
 	try{
 		const hashpassword = await bct.hash(password, 10)
-		const result = await pgclient.query(`select username from dev.user where username=$1`, [username])
-		if (result.rows.length > 0) {
-			return JSON.stringify({"details" : `Username ${username} already exists`})
-		}
-		const newuser = await pgclient.query(`Insert into dev.user (first_name, last_name, username, hashpassword, email) 
+		const user = await pgclient.query(`select username from dev.user where username=$1`, [username])
+		const emailid = await pgclient.query(`select username from dev.user where email=$1`, [email])
+		if (user.rows.length > 0) {
+			return JSON.stringify({"details" : `User already exists with username -> ${username}`})
+		}else if(emailid.rows.length > 0) {
+			return JSON.stringify({"details" : `Email ${email} already exists`})
+		}else{
+			console.log("Inside Else Condition")
+			const newuser = await pgclient.query(`Insert into dev.user (first_name, last_name, username, hashpassword, email) 
 			values($1, $2, $3, $4, $5) RETURNING ID, USERNAME`, [first_name, last_name, username, hashpassword, email])
-		return newuser.rows
-	 
+			return JSON.stringify({"details" : true})
+		}
 	}catch(err){
 		message = `Some thing went wrong ${err}`
 		console.log(message)
@@ -22,7 +26,6 @@ async function createUser(first_name, last_name, email, username, password){
 async function getUsers(req, res){
 	try{
 		const result = await pgclient.query(`select id, username, email from dev.user`)
-		console.log(result.rows)
 		return result
 	}catch(err){
 		message = `Some thing went wrong ${err}`
@@ -67,8 +70,7 @@ async function login(username, password) {
 		const result = await pgclient.query(`select id, hashpassword from dev.user where username=$1`, [username])
 		if(result.rows.length > 0){
 			const user = await bct.compare(password, result.rows[0]['hashpassword'])
-			console.log(result.rows[0]['id'])
-			return result.rows[0]['id']
+			return {"message" : true, "user_id" : result.rows[0].id}
 		}else{
 			return {"message" : `No User found with username ${username}`}
 		}

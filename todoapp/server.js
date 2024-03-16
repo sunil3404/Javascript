@@ -3,7 +3,11 @@ const db  = require("./database.js")
 const path = require("path")
 const app = express();
 const bcrypt =  require("bcrypt")
+const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
 
+dotenv.config();
+console.log(process.env.JWT_SECRET_KEY)
 app.use(express.json())
 app.use(express.static("public"))
 
@@ -23,7 +27,6 @@ app.get('/task/:id', async (req, res) => {
 
 //Create Task
 app.post('/createTask', async (req, res) => {
-	console.log(req.body)
 	const { task } = req.body;
 	const result = await db.createTask(task, req.body.userid);
 	console.log(result.rows)
@@ -48,22 +51,23 @@ app.delete('/deleteTask', async(req, res) => {
 app.post('/register', async(req, res) => {
 	const user = await db.createUser(req.body.first_name, req.body.last_name, req.body.email,
 									 req.body.username, req.body.password1)
-	res.redirect('/login')
+	res.send(user)
 })
 
 app.post('/login', async(req, res) => {
 	const stat = await db.login(req.body.username, req.body.password)
-	res.cookie('userid', stat)
-	if(stat){
-		res.send(true)
-	}else {
-		res.send(false)
+	if(stat.message == true){
+		res.cookie('userid', stat.user_id)
+		res.send(stat)
+	}else{
+		res.send(stat)
 	}
 })
 
 //Get All Users
 app.get('/users', async(req, res) => {
 	const users = await db.getUsers()
+	console.log(users.rows)
 	res.send(users.rows)
 })
 

@@ -20,7 +20,7 @@ create table dev.user(
 	last_name varchar(100) not null,
 	username varchar(50) unique not null,
 	hashpassword varchar(255) not null,
-	email char(100) unique not null
+	email varchar(100) unique not null
 );
 
 create table dev.todostatus (

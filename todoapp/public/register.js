@@ -32,9 +32,30 @@ function passwordValidation(password1, password2){
 	return false
 }
 
+function formValidation(user){
+	let pattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"); 
+
+	if (user.password1 != user.password2){
+		alert("password and confirm password must be same")
+		return false
+	}
+	if(user.password1.length < 8) {
+		alert("password must be atleast of 8 character")
+		return false
+	}
+	if (!pattern.test(user.password1)){
+		alert("password must contain atleast 1 special, 1 numerical and 1 uppercase")
+		return false
+	}
+ 	return true 
+
+}
+
 document.getElementById("register-id").addEventListener("click", function(){
 
 	const user_data = getFormInformation();
+	let flag = formValidation(user_data)
+	if(flag) {
 
 	fetch("http://127.0.0.1:8080/register/" , {
 		"method" : "POST",
@@ -51,10 +72,18 @@ document.getElementById("register-id").addEventListener("click", function(){
 	})
 	.then(response => response.json())
 	.then((stat) => createUser(stat))
-
-	function createUser(stat){
-		window.location.replace("http://127.0.0.1:8080/")
-		// response.redirect("http://127.0.0.1:8080/")
 	}
 
 })
+
+
+function createUser(stat) {
+	alert(stat.details)
+	if (stat.details == true){
+		window.location.replace("http://127.0.0.1:8080/login")
+	}
+	else{
+		alert(stat.details)
+	}
+
+}
