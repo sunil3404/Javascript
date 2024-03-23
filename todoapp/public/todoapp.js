@@ -174,7 +174,7 @@ formsubmit.addEventListener("submit", todoTask)
 
 function todoTask(event){
 	var inputdata = document.getElementsByClassName("todo-text")[0].value
-	let userid = parseInt(document.cookie.split(";")[1].trim().split("=")[1])
+	let userid = parseInt(document.cookie.split("=")[1])
 	console.log(userid)
 	fetch("http://127.0.0.1:8080/createTask", {
   	method: "POST",
@@ -188,7 +188,7 @@ function todoTask(event){
 	})
 	.then(response => response.json())
 	.then((json) => console.log(json));
-	let myLocation = "http://127.0.0.1:8080"
+	let myLocation = "http://127.0.0.1:8080/todo"
 	location.replace(myLocation);
 }
 

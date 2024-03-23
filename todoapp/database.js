@@ -12,7 +12,6 @@ async function createUser(first_name, last_name, email, username, password){
 		}else if(emailid.rows.length > 0) {
 			return JSON.stringify({"details" : `Email ${email} already exists`})
 		}else{
-			console.log("Inside Else Condition")
 			const newuser = await pgclient.query(`Insert into dev.user (first_name, last_name, username, hashpassword, email) 
 			values($1, $2, $3, $4, $5) RETURNING ID, USERNAME`, [first_name, last_name, username, hashpassword, email])
 			return JSON.stringify({"details" : true})
@@ -37,9 +36,7 @@ async function getUserById(id) {
 	// body...
 	try{
 		const result = await pgclient.query(`select username, email from dev.user where id=$1`, [id])
-		console.log(result.rows.length)
 		if (result.rows.length == 0){
-			console.log("Inside if in userById");
 			return {"Message" : `No User found with id -> ${id}`}
 		}
 		return result
@@ -104,9 +101,7 @@ async function createTask(task, user_id) {
 async function updateTaskById(id, stat, updated_date){
 
 	try{
-		console.log("Inside Update task")	
 		const result = await pgclient.query(`update dev.todotask set status_id=$1, updated_date=$2 where id=$3 RETURNING ID, STATUS_ID, UPDATED_DATE`, [stat, updated_date, id])
-		console.log(result.rows)
 		await pgclient.query('COMMIT')
 		return getTaskById(id)
 	}catch(ex){

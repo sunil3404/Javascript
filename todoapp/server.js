@@ -98,13 +98,13 @@ app.get('/statbyid/:id', db.getOneStatus)
 
 // Render Files
 app.get('/todo', (req, res) => {
-	res.sendFile("/home/sunil/Javascript/todoapp/public/todo.html")
+	res.sendFile(path.join(__dirname, '/public/todo.html'));
 })
 
 app.get('/register', (req, res) => {
-	res.sendFile("/home/sunil/Javascript/todoapp/public/register.html")
+	res.sendFile(path.join(__dirname, '/public/register.html'));
 })
 
 app.get('/login', (req, res) => {
-	res.sendFile("/home/sunil/Javascript/todoapp/public/login.html")
+	res.sendFile(path.join(__dirname, '/public/login.html'));
 })
